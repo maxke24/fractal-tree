@@ -2,13 +2,16 @@ let tree = [];
 let leaves = [];
 let count = 0;
 let strokeWeightVariable = 7;
+let gravity;
+let wind;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     colorMode(HSB);
-    background(51)
+    background(51);
+    gravity = createVector(0, 0.2);
     let begin = createVector(width / 2, height);
-    let end = createVector(width / 2, height - 150);
+    let end = createVector(width / 2, height - 250);
     tree.push(new Branch(begin, end, strokeWeightVariable))
 }
 
@@ -50,9 +53,9 @@ function draw() {
     leaves.forEach(leaf => {
         leaf.update();
         leaf.show();
-        if (leaf.lifespan < 40) {
-            leaf.fall();
-        }
+        // if (leaf.lifespan < 40) {
+        //     leaf.fall();
+        // }
     });
     for (let i = leaves.length - 1; i >= 0; i--) {
         if (leaves[i].pos.y > height) {
