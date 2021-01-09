@@ -9,7 +9,7 @@ function setup() {
     background(51)
     let begin = createVector(width / 2, height);
     let end = createVector(width / 2, height - 150);
-    tree.push(new Branch(begin, end))
+    tree.push(new Branch(begin, end, strokeWeightVariable))
 }
 
 function mouseClicked() {
@@ -17,16 +17,16 @@ function mouseClicked() {
 }
 
 function growTree() {
-    if (strokeWeightVariable >= 1) {
+    if (strokeWeightVariable > 1) {
         for (let i = tree.length - 1; i >= 0; i--) {
             if (!tree[i].branched) {
                 tree.push(tree[i].branch(1));
                 tree.push(tree[i].branch(-1));
-                strokeWeightVariable -= 1;
             }
             tree[i].branched = true;
         }
         count++;
+        strokeWeightVariable -= 1;
     }
 }
 
@@ -59,7 +59,4 @@ function draw() {
             leaves.splice(i, 1);
         }
     }
-/*    if(leaves.length <= 0){
-        growTree();
-    }*/
 }

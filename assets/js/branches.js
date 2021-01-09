@@ -1,16 +1,17 @@
 class Branch{
-    constructor(begin, end){
+    constructor(begin, end, strokeWeight){
         this.begin = begin;
         this.end = end;
         this.len = begin.y - end.y;
         this.branched = false;
         this.grown = false;
         this.leaf = false;
+        this.strokeWeight = strokeWeight;
     }
 
     update(){
         if(this.len >= 0){
-            this.len -= 1;
+            this.len -= 5;
         }else{
             this.grown = true;
         }
@@ -25,7 +26,7 @@ class Branch{
             y2 = this.end.y + this.len;
         }
         stroke(255);
-        strokeWeight(strokeWeightVariable);
+        strokeWeight(this.strokeWeight);
         line(x1, y1, x2, y2);
     }
 
@@ -34,6 +35,6 @@ class Branch{
         dir.rotate(mult * PI / 6);
         dir.mult(0.67);
         let newEnd = p5.Vector.add(this.end, dir);
-        return new Branch(this.end, newEnd);
+        return new Branch(this.end, newEnd, strokeWeightVariable);
     }
 }
