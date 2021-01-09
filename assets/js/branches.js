@@ -5,6 +5,7 @@ class Branch{
         this.len = begin.y - end.y;
         this.branched = false;
         this.grown = false;
+        this.leaf = false;
     }
 
     update(){
@@ -24,7 +25,7 @@ class Branch{
             y2 = this.end.y + this.len;
         }
         stroke(255);
-        strokeWeight(2);
+        strokeWeight(strokeWeightVariable);
         line(x1, y1, x2, y2);
     }
 

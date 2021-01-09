@@ -1,6 +1,7 @@
 let tree = [];
 let leaves = [];
 let count = 0;
+let strokeWeightVariable = 7;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -16,19 +17,15 @@ function mouseClicked() {
 }
 
 function growTree() {
-    if (count < 6) {
+    if (strokeWeightVariable >= 1) {
         for (let i = tree.length - 1; i >= 0; i--) {
             if (!tree[i].branched) {
                 tree.push(tree[i].branch(1));
                 tree.push(tree[i].branch(-1));
+                strokeWeightVariable -= 1;
             }
             tree[i].branched = true;
         }
-        tree.forEach(branch => {
-            if (!branch.finished) {
-                leaves.push(new Leaf(branch.end.copy()));
-            }
-        });
         count++;
     }
 }
@@ -39,11 +36,14 @@ function draw() {
     tree.forEach(branch => {
         branch.update();
         branch.show();
-        if(!branch.grown){
+        if (branch.grown && !branch.branched && !branch.leaf) {
+            leaves.push(new Leaf(branch.end.copy()));
+            branch.leaf = true;
+        }else if (!branch.grown){
             grow = false;
         }
     });
-    if(grow){
+    if(grow && leaves.length <= 0){
         growTree();
     }
 
@@ -59,7 +59,7 @@ function draw() {
             leaves.splice(i, 1);
         }
     }
-    // if(leaves.length <= 0){
-    //     growTree();
-    // }
+/*    if(leaves.length <= 0){
+        growTree();
+    }*/
 }
