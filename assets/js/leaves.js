@@ -9,7 +9,7 @@ class Leaf{
 
     update(){
         if(this.lifespan < 40){
-            let wind = createVector(random(-0.2, 0.2), random(-0.1, 0.1));
+            let wind = createVector(random(-0.3, 0.3), random(-0.1, 0.1));
             this.applyForce(gravity);
             this.applyForce(wind);
             this.vel.add(this.acc);

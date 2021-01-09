@@ -1,7 +1,7 @@
 let tree = [];
 let leaves = [];
 let count = 0;
-let strokeWeightVariable = 7;
+let strokeWeightVariable = 9;
 let gravity;
 let wind;
 
