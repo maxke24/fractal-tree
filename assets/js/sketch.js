@@ -12,7 +12,7 @@ function setup() {
     gravity = createVector(0, 0.2);
     let begin = createVector(width / 2, height);
     let end = createVector(width / 2, height - 250);
-    tree.push(new Branch(begin, end, strokeWeightVariable))
+    tree.push(new Branch(begin, end, strokeWeightVariable));
 }
 
 function mouseClicked() {
@@ -53,9 +53,6 @@ function draw() {
     leaves.forEach(leaf => {
         leaf.update();
         leaf.show();
-        // if (leaf.lifespan < 40) {
-        //     leaf.fall();
-        // }
     });
     for (let i = leaves.length - 1; i >= 0; i--) {
         if (leaves[i].pos.y > height) {

@@ -32,7 +32,7 @@ class Branch{
 
     branch(mult){
         let dir = p5.Vector.sub(this.end, this.begin);
-        dir.rotate(mult * PI / 6);
+        dir.rotate(mult * PI / 8);
         dir.mult(0.67);
         let newEnd = p5.Vector.add(this.end, dir);
         return new Branch(this.end, newEnd, strokeWeightVariable);
